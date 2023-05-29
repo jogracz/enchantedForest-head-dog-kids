@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nuko Games - Planet Sweet</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bangers&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"
+      integrity="sha512-6+YN/9o9BWrk6wSfGxQGpt3EUK6XeHi6yeHV+TYD2GR0Sj/cggRpXr1BrAQf0as6XslxomMUxXp2vIl+fv0QRA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+  </head>
+
+  <body>
+    <canvas id="canvas"></canvas>
+    <!-- ENCHANTED FOREST -->
+
+    <!-- FACE -->
+    <img id="dog1" src="assets/FACE/dog1.png" />
+    <img id="dog2" src="assets/FACE/dog2.png" />
+    <img id="dog3" src="assets/FACE/dog3.png" />
+    <img id="dog4" src="assets/FACE/dog4.png" />
+    <img id="dog5" src="assets/FACE/dog5.png" />
+
+    <!-- UI -->
+    <div id="ui_container" class="bgColor">
+      <div id="ui_internal">
+        <img id="welcomeScreen" src="assets/welcome-screen.png" />
+        <!--##################### TODO: CHANGE NAME BELOW #########################################-->
+        <h1 id="welcomeHeader" class="header">Dear Kids</h1>
+        <!--##################### TODO: CHANGE NAME ABOVE #########################################-->
+        <!-- SCREEN 1 -->
+        <div id="welcomeMessage1" class="welcomeMessage" style="padding: 20px">
+          <h2>Welcome to Enchanted Forest!</h2>
+
+          <p>Some friendly creatures left you a VERY important message...</p>
+          <p>But it got shreaded into 4 peaces and hidden away!</p>
+          <img id="chestClosed" src="assets/chest-closed.png" />
+        </div>
+        <!-- SCREEN 2 -->
+        <div
+          id="welcomeMessage2"
+          class="welcomeMessage hide"
+          style="padding: 20px"
+        >
+          <p>Use arrows to move arround</p>
+
+          <img id="arrowTop" class="arrow" src="assets/arrowUp.png" />
+          <div>
+            <img id="arrowLeft" class="arrow" src="assets/arrowLeft.png" />
+            <img id="arrowRight" class="arrow" src="assets/arrowRight.png" />
+          </div>
+          <p>And find the secret message!</p>
+          <p>(It should take you no more than a few minutes)</p>
+        </div>
+        <!-- SCREEN 3 -->
+        <div
+          id="welcomeMessage3"
+          class="welcomeMessage hide"
+          style="padding: 20px"
+        >
+          <h2>Set difficulty level:</h2>
+          <div id="easyModeContainer" class="modeContainer">
+            <p id="modeEasyText" class="mode">EASY</p>
+            <img
+              id="modeEasyCheckFalse"
+              class="check"
+              src="assets/check_false.png"
+            />
+            <img
+              id="modeEasyCheckTrue"
+              class="check hide"
+              src="assets/check_true.png"
+            />
+          </div>
+
+          <div id="mediumModeContainer" class="modeContainer">
+            <p id="modeMediumText" class="mode">MEDIUM</p>
+            <img
+              id="modeMediumCheckFalse"
+              class="check hide"
+              src="assets/check_false.png"
+            />
+            <img
+              id="modeMediumCheckTrue"
+              class="check"
+              src="assets/check_true.png"
+            />
+          </div>
+
+          <div id="hardModeContainer" class="modeContainer">
+            <p id="modeHardText" class="mode">HARD</p>
+            <img
+              id="modeHardCheckFalse"
+              class="check"
+              src="assets/check_false.png"
+            />
+            <img
+              id="modeHardCheckTrue"
+              class="check hide"
+              src="assets/check_true.png"
+            />
+          </div>
+        </div>
+        <!-- SCREEN 4 -->
+        <div
+          id="welcomeMessage4"
+          class="welcomeMessage hide"
+          style="padding: 20px"
+        >
+          <!-- Slime -->
+          <img
+            id="enemyOnWelcomeScreen"
+            src="assets/SlimeOrange/SlimeOrange_00000.png"
+          />
+          <p>Oh, I almost forgot! Beware of mean potatos!</p>
+          <p>Good luck!</p>
+        </div>
+
+        <!-- ENDGAME -->
+        <h1 id="endHeader1" class="header hide">Great job!</h1>
+        <h1 id="endHeader2" class="header hide">Secret message:</h1>
+        <div
+          id="endMessage1"
+          class="welcomeMessage endMessage hide"
+          style="padding: 20px"
+        >
+          <p>You found all the pieces of the secret message!</p>
+          <p>Let's read it!</p>
+        </div>
+        <div
+          id="secretMesage"
+          class="welcomeMessage hide"
+          style="padding: 20px"
+        >
+          <!--##################### TODO: CHANGE MESSAGE BELOW #########################################-->
+          <p>"Thanks for being awesome!</p>
+          <p>Mom & Dad"</p>
+          <!--##################### TODO: CHANGE MESSAGE ABOVE #########################################-->
+        </div>
+        <div id="startButton" class="button hide">
+          <img id="emptyButton" src="assets/button.png" alt="Play again" />
+          <span id="playText" class="buttonText">Play</span>
+          <span id="playAgainText" class="buttonText hide">Play again</span>
+        </div>
+
+        <img
+          id="nextButton"
+          class="button"
+          src="assets/nextButton.png"
+          alt="Ok"
+        />
+      </div>
+    </div>
+
+    <!-- characters -->
+
+    <!-- FlatBoy idle-->
+    <img id="flatBoyIdle1" src="assets/FlatBoy/without head/Idle (1)2.png" />
+    <img id="flatBoyIdle2" src="assets/FlatBoy/without head/Idle (2)2.png" />
+    <img id="flatBoyIdle3" src="assets/FlatBoy/without head/Idle (3)2.png" />
+    <img id="flatBoyIdle4" src="assets/FlatBoy/without head/Idle (4)2.png" />
+    <img id="flatBoyIdle5" src="assets/FlatBoy/without head/Idle (5)2.png" />
+    <img id="flatBoyIdle6" src="assets/FlatBoy/without head/Idle (6)2.png" />
+    <img id="flatBoyIdle7" src="assets/FlatBoy/without head/Idle (7)2.png" />
+    <img id="flatBoyIdle8" src="assets/FlatBoy/without head/Idle (8)2.png" />
+    <img id="flatBoyIdle9" src="assets/FlatBoy/without head/Idle (9)2.png" />
+    <img id="flatBoyIdle10" src="assets/FlatBoy/without head/Idle (10)2.png" />
+    <img id="flatBoyIdle11" src="assets/FlatBoy/without head/Idle (11)2.png" />
+    <img id="flatBoyIdle12" src="assets/FlatBoy/without head/Idle (12)2.png" />
+    <img id="flatBoyIdle13" src="assets/FlatBoy/without head/Idle (13)2.png" />
+    <img id="flatBoyIdle14" src="assets/FlatBoy/without head/Idle (14)2.png" />
+    <img id="flatBoyIdle15" src="assets/FlatBoy/without head/Idle (15)2.png" />
+    <!-- FlatBoy running-->
+    <img id="flatBoyRun1" src="assets/FlatBoy/without head/Run (1)2.png" />
+    <img id="flatBoyRun2" src="assets/FlatBoy/without head/Run (2)2.png" />
+    <img id="flatBoyRun3" src="assets/FlatBoy/without head/Run (3)2.png" />
+    <img id="flatBoyRun4" src="assets/FlatBoy/without head/Run (4)2.png" />
+    <img id="flatBoyRun5" src="assets/FlatBoy/without head/Run (5)2.png" />
+    <img id="flatBoyRun6" src="assets/FlatBoy/without head/Run (6)2.png" />
+    <img id="flatBoyRun7" src="assets/FlatBoy/without head/Run (7)2.png" />
+    <img id="flatBoyRun8" src="assets/FlatBoy/without head/Run (8)2.png" />
+    <img id="flatBoyRun9" src="assets/FlatBoy/without head/Run (9)2.png" />
+    <img id="flatBoyRun10" src="assets/FlatBoy/without head/Run (10)2.png" />
+    <img id="flatBoyRun11" src="assets/FlatBoy/without head/Run (11)2.png" />
+    <img id="flatBoyRun12" src="assets/FlatBoy/without head/Run (12)2.png" />
+    <img id="flatBoyRun13" src="assets/FlatBoy/without head/Run (13)2.png" />
+    <img id="flatBoyRun14" src="assets/FlatBoy/without head/Run (14)2.png" />
+    <img id="flatBoyRun15" src="assets/FlatBoy/without head/Run (15)2.png" />
+    <!-- FlatBoy jumping-->
+    <!-- <img id="flatBoyJump1" src="assets/FlatBoy/Jump (1).png" />
+    <img id="flatBoyJump2" src="assets/FlatBoy/Jump (2).png" />
+    <img id="flatBoyJump3" src="assets/FlatBoy/Jump (3).png" />
+    <img id="flatBoyJump4" src="assets/FlatBoy/Jump (4).png" />
+    <img id="flatBoyJump5" src="assets/FlatBoy/Jump (5).png" />
+    <img id="flatBoyJump6" src="assets/FlatBoy/Jump (6).png" /> -->
+    <!-- <img id="flatBoyJump7" src="assets/FlatBoy/Jump (7)-cropped2.png" /> -->
+    <img
+      id="flatBoyJump7"
+      src="assets/FlatBoy/without head/Jump (7)-cropped2.png"
+    />
+    <!-- <img id="flatBoyJump8" src="assets/FlatBoy/Jump (8).png" />
+    <img id="flatBoyJump9" src="assets/FlatBoy/Jump (9).png" />
+    <img id="flatBoyJump10" src="assets/FlatBoy/Jump (10).png" />
+    <img id="flatBoyJump11" src="assets/FlatBoy/Jump (11).png" />
+    <img id="flatBoyJump12" src="assets/FlatBoy/Jump (12).png" />
+    <img id="flatBoyJump13" src="assets/FlatBoy/Jump (13).png" />
+    <img id="flatBoyJump14" src="assets/FlatBoy/Jump (14).png" />
+    <img id="flatBoyJump15" src="assets/FlatBoy/Jump (15).png" /> -->
+
+    <!-- enemies -->
+    <!-- slime orange -->
+    <img id="slime0" src="assets/SlimeOrange/SlimeOrange_00000.png" />
+    <img id="slime1" src="assets/SlimeOrange/SlimeOrange_00001.png" />
+    <img id="slime2" src="assets/SlimeOrange/SlimeOrange_00002.png" />
+    <img id="slime3" src="assets/SlimeOrange/SlimeOrange_00003.png" />
+    <img id="slime4" src="assets/SlimeOrange/SlimeOrange_00004.png" />
+    <img id="slime5" src="assets/SlimeOrange/SlimeOrange_00005.png" />
+    <img id="slime6" src="assets/SlimeOrange/SlimeOrange_00006.png" />
+    <img id="slime7" src="assets/SlimeOrange/SlimeOrange_00007.png" />
+    <img id="slime8" src="assets/SlimeOrange/SlimeOrange_00008.png" />
+    <img id="slime9" src="assets/SlimeOrange/SlimeOrange_00009.png" />
+    <img id="slime10" src="assets/SlimeOrange/SlimeOrange_00010.png" />
+    <img id="slime11" src="assets/SlimeOrange/SlimeOrange_00011.png" />
+    <img id="slime12" src="assets/SlimeOrange/SlimeOrange_00012.png" />
+    <img id="slime13" src="assets/SlimeOrange/SlimeOrange_00013.png" />
+    <img id="slime14" src="assets/SlimeOrange/SlimeOrange_00014.png" />
+    <img id="slime15" src="assets/SlimeOrange/SlimeOrange_00015.png" />
+    <img id="slime16" src="assets/SlimeOrange/SlimeOrange_00016.png" />
+    <img id="slime17" src="assets/SlimeOrange/SlimeOrange_00017.png" />
+    <img id="slime18" src="assets/SlimeOrange/SlimeOrange_00018.png" />
+    <img id="slime19" src="assets/SlimeOrange/SlimeOrange_00018.png" />
+    <img id="slime20" src="assets/SlimeOrange/SlimeOrange_00020.png" />
+    <img id="slime21" src="assets/SlimeOrange/SlimeOrange_00021.png" />
+    <img id="slime22" src="assets/SlimeOrange/SlimeOrange_00022.png" />
+    <img id="slime23" src="assets/SlimeOrange/SlimeOrange_00023.png" />
+    <img id="slime24" src="assets/SlimeOrange/SlimeOrange_00024.png" />
+    <img id="slime25" src="assets/SlimeOrange/SlimeOrange_00025.png" />
+    <img id="slime26" src="assets/SlimeOrange/SlimeOrange_00026.png" />
+    <img id="slime27" src="assets/SlimeOrange/SlimeOrange_00027.png" />
+    <img id="slime28" src="assets/SlimeOrange/SlimeOrange_00028.png" />
+    <img id="slime29" src="assets/SlimeOrange/SlimeOrange_00029.png" />
+
+    <!-- props -->
+    <img id="messagePart1" class="hide" src="assets/messagePart1.png" />
+    <img id="messagePart2" class="hide" src="assets/messagePart2.png" />
+    <img id="messagePart3" class="hide" src="assets/messagePart3.png" />
+    <img id="messagePart4" class="hide" src="assets/messagePart4.png" />
+
+    <img id="key" src="assets/key.png" />
+
+    <!-- <img id="heart_red" src="assets/heart_red.png" />
+    <img id="heart_grey" src="assets/heart_grey.png" /> -->
+    <!-- <img id="bullet" src="assets/bullet.png" /> -->
+    <img id="coin" src="assets/coin.png" />
+    <!-- <img id="projectile" src="assets/projectile.png" />
+    <img id="gears" src="assets/gears.png" />
+    <img id="gears" src="assets/gears.png" />
+    <img id="fire" src="assets/fireExplosion.png" />
+    <img id="smoke" src="assets/smokeExplosion.png" /> -->
+    <img id="chest" src="assets/Chest 1024x256(1x).png" />
+    <!-- <img id="roadClosed" src="assets/roadClosed.png" /> -->
+    <img id="signRight" src="assets/signRight.png" />
+    <img id="signLeft" src="assets/signLeft.png" />
+    <!-- <img id="doors" src="assets/doors.png" /> -->
+
+    <!-- environment -->
+    <img id="layer1" src="assets/layers/layer1.png" />
+    <!-- <img id="layer1-small" src="assets/layers/layer1-small.png" /> -->
+    <img id="layer2" src="assets/layers/layer2.png" />
+    <!-- <img id="layer2-small" src="assets/layers/layer2-small.png" /> -->
+    <img id="layer3" src="assets/layers/layer3.png" />
+    <!-- <img id="layer3-small" src="assets/layers/layer3-small.png" /> -->
+    <img id="layer4" src="assets/layers/layer4.png" />
+    <!-- <img id="layer4-small" src="assets/layers/layer4-small.png" /> -->
+    <img id="layer5" src="assets/layers/layer5.png" />
+    <!-- <img id="layer5-small" src="assets/layers/layer5-small.png" /> -->
+    <img id="layer6" src="assets/layers/layer6.png" />
+    <img id="layer7" src="assets/layers/layer7.png" />
+    <!-- <img id="layer6-small" src="assets/layers/layer6-small.png" /> -->
+
+    <!-- <div id="container"> -->
+    <img id="heart" src="assets/heart.png" />
+    <img id="heart-small" src="assets/heart-small.png" />
+    <img id="heart-xsmall" src="assets/heart-xsmall.png" />
+    <!-- </div> -->
+    <script type="module" src="index.js"></script>
+  </body>
+</html>

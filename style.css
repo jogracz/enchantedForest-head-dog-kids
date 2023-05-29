@@ -1,0 +1,372 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+#canvas {
+  /* border: 5px solid black; */
+
+  /* centers the canvas */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  /* width: 100%; */
+  max-width: 100%;
+  /* height: 100%; */
+  max-height: 100%;
+
+  font-family: "Bangers", cursive;
+}
+
+.left {
+  transform: scale(-1, 1);
+}
+
+#dog1,
+#dog2,
+#dog3,
+#dog4,
+#dog5,
+#slime0,
+#slime1,
+#slime2,
+#slime3,
+#slime4,
+#slime5,
+#slime6,
+#slime7,
+#slime8,
+#slime9,
+#slime10,
+#slime11,
+#slime12,
+#slime13,
+#slime14,
+#slime15,
+#slime16,
+#slime17,
+#slime18,
+#slime19,
+#slime20,
+#slime21,
+#slime22,
+#slime23,
+#slime24,
+#slime25,
+#slime26,
+#slime27,
+#slime28,
+#slime29,
+#layer1-small,
+#layer2-small,
+#layer3-small,
+#layer4-small,
+#layer5-small,
+#layer6-small,
+#layer1,
+#layer2,
+#layer3,
+#layer4,
+#layer5,
+#layer6,
+#layer7,
+#coin,
+#chest,
+#bullet,
+#key,
+#roadClosed,
+#signRight,
+#signLeft,
+#doors,
+#heart,
+#heart-small,
+#heart-xsmall,
+#heart_red,
+#heart_grey,
+#flatBoyIdle1,
+#flatBoyIdle2,
+#flatBoyIdle3,
+#flatBoyIdle4,
+#flatBoyIdle5,
+#flatBoyIdle6,
+#flatBoyIdle7,
+#flatBoyIdle8,
+#flatBoyIdle9,
+#flatBoyIdle10,
+#flatBoyIdle11,
+#flatBoyIdle12,
+#flatBoyIdle13,
+#flatBoyIdle14,
+#flatBoyIdle15,
+#flatBoyRun1,
+#flatBoyRun2,
+#flatBoyRun3,
+#flatBoyRun4,
+#flatBoyRun5,
+#flatBoyRun6,
+#flatBoyRun7,
+#flatBoyRun8,
+#flatBoyRun9,
+#flatBoyRun10,
+#flatBoyRun11,
+#flatBoyRun12,
+#flatBoyRun13,
+#flatBoyRun14,
+#flatBoyRun15,
+#flatBoyJump1,
+#flatBoyJump2,
+#flatBoyJump3,
+#flatBoyJump4,
+#flatBoyJump5,
+#flatBoyJump6,
+#flatBoyJump7,
+#flatBoyJump8,
+#flatBoyJump9,
+#flatBoyJump10,
+#flatBoyJump11,
+#flatBoyJump12,
+#flatBoyJump13,
+#flatBoyJump14,
+#flatBoyJump15,
+#player,
+#angler1,
+#angler2,
+#lucky,
+#projectile,
+#gears,
+#hivewhale,
+#drone,
+#fire,
+#smoke {
+  display: none;
+}
+
+.lifes {
+  position: absolute;
+  top: 100px;
+  right: 100px;
+  width: 50px;
+}
+
+#ui_container {
+  /* position: absolute; */
+  /* top: 0;
+  left: 0; */
+  /* display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center; */
+  /* width: 100%; */
+  height: 100vh;
+  font-family: "Bangers", cursive;
+  font-size: 28px;
+  color: white;
+  text-shadow: 2px 2px burlywood;
+  /* background-color: red; */
+}
+
+.bgColor {
+  /* background-color: aqua; */
+}
+#ui_internal {
+  position: relative;
+  /* top: 0%; */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 100%;
+  width: 700px;
+  max-width: 100%;
+  block-size: fit-content;
+  text-align: center;
+}
+#welcomeScreen {
+  width: 100%;
+  z-index: 0;
+}
+.header {
+  position: absolute;
+  top: 11%;
+  left: 50%;
+  transform: translate(-55%, -45%);
+  color: white;
+  text-shadow: 2px 2px burlywood;
+}
+.welcomeMessage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+  /* background-color: cadetblue; */
+  z-index: 2;
+  width: 80%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+#secretMesage {
+  justify-content: center;
+}
+#secretMesage p {
+  padding-top: 9px;
+  padding-bottom: 9px;
+}
+.endMessage {
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+}
+#enemyOnWelcomeScreen {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120px;
+  max-width: 15%;
+  transform: translate(-50%, -50%);
+}
+#chestClosed {
+  width: 60px;
+  max-width: 15%;
+}
+#messagePart1,
+#messagePart2,
+#messagePart3,
+#messagePart4 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100px;
+}
+#messagePart1 {
+  transform: translate(-100%, -80%);
+}
+#messagePart2 {
+  transform: translate(-50%, 20%);
+}
+#messagePart3 {
+  transform: translate(-30%, -80%);
+  width: 70px;
+}
+#messagePart4 {
+  transform: translate(30%, 20%);
+  width: 80px;
+}
+.arrow {
+  width: 50px;
+}
+.button {
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  transform: translate(-50%, 0%);
+}
+.button:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+#startButton {
+  font-size: 40px;
+  width: 220px;
+  max-width: 35%;
+  block-size: fit-content;
+  position: absolute;
+}
+#emptyButton {
+  width: 100%;
+  position: relative;
+  text-align: center;
+}
+.buttonText {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#playAgainText {
+  width: 100%;
+}
+#nextButton {
+  z-index: 3;
+  width: 100px;
+  max-width: 15%;
+}
+#nextButton:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+.modeContainer:hover {
+  cursor: pointer;
+}
+.modeContainer {
+  display: flex;
+  align-items: center;
+  width: 35%;
+  justify-content: space-between;
+  /* background-color: darkblue; */
+}
+.check {
+  width: 50px;
+  height: 55px;
+}
+@media screen and (max-width: 850px) {
+  #ui_container {
+    font-size: 26px;
+  }
+  .check {
+    width: 50px;
+    height: 55px;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  #ui_container {
+    font-size: 20px;
+  }
+  .buttonText {
+    font-size: 24px;
+  }
+  .arrow {
+    width: 40px;
+  }
+  .check {
+    width: 40px;
+    height: 45px;
+  }
+}
+@media screen and (max-width: 500px) {
+  #ui_container {
+    font-size: 14px;
+  }
+  .buttonText {
+    font-size: 18px;
+  }
+  .arrow {
+    width: 30px;
+  }
+  .check {
+    width: 30px;
+    height: 35px;
+  }
+}
+@media screen and (max-width: 400px) {
+  #ui_container {
+    font-size: 10px;
+  }
+  .arrow {
+    width: 20px;
+  }
+  .check {
+    width: 20px;
+    height: 25px;
+  }
+}
+
+.hide {
+  display: none;
+}
