@@ -20,7 +20,7 @@ window.addEventListener("load", function () {
   let isGameStarted = false;
   let isGameFinished = false;
   let isGameEndShown = false;
-  let gameMode = MODES.MEDIUM;
+  let gameMode = MODES.EASY;
 
   const nextButton = document.getElementById("nextButton");
   const welcomeMessage1 = document.getElementById("welcomeMessage1");
