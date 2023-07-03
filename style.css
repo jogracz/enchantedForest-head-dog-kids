@@ -365,6 +365,16 @@ body {
   #emptyButton {
     width: 180px;
   }
+  #messagePart1,
+  #messagePart2 {
+    width: 70px;
+  }
+  #messagePart3 {
+    width: 45px;
+  }
+  #messagePart4 {
+    width: 50px;
+  }
 }
 
 @media screen and (max-width: 650px), screen and (max-height: 500px) {
@@ -389,6 +399,16 @@ body {
   }
   #emptyButton {
     width: 150px;
+  }
+  #messagePart1,
+  #messagePart2 {
+    width: 60px;
+  }
+  #messagePart3 {
+    width: 35px;
+  }
+  #messagePart4 {
+    width: 40px;
   }
 }
 @media screen and (max-height: 460px) {
@@ -416,10 +436,30 @@ body {
   #emptyButton {
     width: 130px;
   }
+  #messagePart1,
+  #messagePart2 {
+    width: 50px;
+  }
+  #messagePart3 {
+    width: 32px;
+  }
+  #messagePart4 {
+    width: 40px;
+  }
 }
 @media screen and (max-width: 450px) {
   #emptyButton {
     width: 120px;
+  }
+  #messagePart1,
+  #messagePart2 {
+    width: 40px;
+  }
+  #messagePart3 {
+    width: 25px;
+  }
+  #messagePart4 {
+    width: 30px;
   }
 }
 
@@ -440,7 +480,32 @@ body {
   #welcomeScreen {
     width: 430px;
   }
+  #nextButton {
+    width: 60px;
+  }
 }
+@media screen and (max-height: 300px) {
+  #welcomeScreen {
+    width: 350px;
+  }
+  #messagePart1,
+  #messagePart2 {
+    width: 30px;
+  }
+  #messagePart3 {
+    width: 20px;
+  }
+  #messagePart4 {
+    width: 25px;
+  }
+  #nextButton {
+    width: 50px;
+  }
+  #chestClosed {
+    width: 30px;
+  }
+}
+
 @media screen and (max-width: 400px) {
   #ui_container {
     font-size: 10px;
@@ -460,5 +525,15 @@ body {
 @media screen and (max-width: 350px) {
   #emptyButton {
     width: 100px;
+  }
+  #messagePart1,
+  #messagePart2 {
+    width: 20px;
+  }
+  #messagePart3 {
+    width: 12px;
+  }
+  #messagePart4 {
+    width: 15px;
   }
 }
