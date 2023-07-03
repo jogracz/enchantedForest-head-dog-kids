@@ -186,8 +186,19 @@ window.addEventListener("load", function () {
   canvas.width = 1920;
   canvas.height = 1080;
 
+  // fixes canvas dimensions on screen resize
+  const setCanvasWidth = () => {
+    if (window.innerWidth > 960 && window.innerHeight > 540) {
+      canvas.style.width = 960 + "px";
+    } else {
+      canvas.style.width = null;
+    }
+  };
+  setCanvasWidth();
+  window.addEventListener("resize", setCanvasWidth);
+
   // comment this line to make the game bigger
-  canvas.style.width = 960 + "px";
+  // canvas.style.width = 960 + "px";
   // canvas.style.height = 540 + "px";
 
   const scale = 2;
