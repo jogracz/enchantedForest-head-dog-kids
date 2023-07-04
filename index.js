@@ -8,6 +8,7 @@ import {
   SIGN_TYPES,
   JELLY_TYPES,
   MODES,
+  PLAYER_DIRECTION,
 } from "./constants.js";
 import { LEVEL_CONFIG } from "./levelConfig.js";
 import { IMAGES } from "./images.js";
@@ -21,6 +22,7 @@ window.addEventListener("load", function () {
   let isGameFinished = false;
   let isGameEndShown = false;
   let gameMode = MODES.EASY;
+  let isMobile = false;
 
   const nextButton = document.getElementById("nextButton");
   const welcomeMessage1 = document.getElementById("welcomeMessage1");
@@ -209,6 +211,12 @@ window.addEventListener("load", function () {
   class InputHandler {
     constructor(game) {
       this.game = game;
+      // this.touchStartX = undefined;
+      this.touchStartY = undefined;
+      this.touchX = undefined;
+      this.touchY = undefined;
+      this.touchTreshold = 30;
+
       //  KeyDown
       window.addEventListener("keydown", (e) => {
         if (!this.game.player.isDead && isGameStarted && !isGameFinished) {
@@ -245,6 +253,82 @@ window.addEventListener("load", function () {
             this.game.player.moveState = PLAYER_MOVE_STATE.idle;
             break;
         }
+      });
+
+      // mobile controls //
+      // touchstart
+      window.addEventListener("touchstart", (e) => {
+        // mobile flag
+        isMobile = true;
+
+        // respond to touches only when game is active
+        if (!this.game.player.isDead && isGameStarted && !isGameFinished) {
+          this.touchX = e.touches[0].clientX;
+          this.touchY = e.touches[0].clientY;
+          // this.touchStartX = e.touches[0].clientX;
+          this.touchStartY = e.touches[0].clientY;
+          this.game.player.moveState = PLAYER_MOVE_STATE.run;
+          // old way of controling on mobile (touching right and left side of screen, unintuitive!)
+          // if (this.touchStartX > window.outerWidth / 2) {
+          //   this.game.player.direction = PLAYER_DIRECTION.right;
+          //   if (!this.game.rightBoundaryOn) {
+          //     this.game.moveAssetsRight = false;
+          //     this.game.moveAssetsLeft = true;
+          //   }
+          // } else {
+          //   this.game.player.direction = PLAYER_DIRECTION.left;
+          //   if (!this.game.leftBoundaryOn) {
+          //     this.game.moveAssetsRight = true;
+          //     this.game.moveAssetsLeft = false;
+          //   }
+          // }
+        }
+      });
+
+      // touchmove
+      window.addEventListener("touchmove", (e) => {
+        if (!this.game.player.isDead && isGameStarted && !isGameFinished) {
+          const newX = e.touches[0].clientX;
+          const newY = e.touches[0].clientY;
+          const distanceX = newX - this.touchX;
+
+          // left or right
+          if (distanceX < 0) {
+            if (distanceX < -0.5) {
+              this.game.player.direction = PLAYER_DIRECTION.left;
+              if (!this.game.leftBoundaryOn) {
+                this.game.moveAssetsRight = true;
+                this.game.moveAssetsLeft = false;
+              }
+            }
+          } else {
+            if (distanceX > 0.5) {
+              this.game.player.direction = PLAYER_DIRECTION.right;
+              if (!this.game.rightBoundaryOn) {
+                this.game.moveAssetsRight = false;
+                this.game.moveAssetsLeft = true;
+              }
+            }
+          }
+          this.touchX = newX;
+
+          // handle Y move (jump)
+          const distanceY = newY - this.touchStartY;
+          if (distanceY < -this.touchTreshold) {
+            this.game.keys.push(KEYS.arrowUp);
+          }
+        }
+      });
+
+      // touchend
+      window.addEventListener("touchend", () => {
+        // reset
+        // this.touchStartX = undefined;
+        this.touchStartY = undefined;
+        this.game.keys = this.game.keys.filter((key) => key != KEYS.arrowUp);
+        this.game.player.moveState = PLAYER_MOVE_STATE.idle;
+        this.game.moveAssetsLeft = false;
+        this.game.moveAssetsRight = false;
       });
     }
   }
@@ -1264,15 +1348,25 @@ window.addEventListener("load", function () {
         this.isLevelSet = true;
       }
 
-      // move assets left or right
-      if (this.keys.includes(KEYS.arrowRight) && !this.rightBoundaryOn) {
-        this.moveAssetsLeft = true;
-        this.moveAssetsRight = false;
-      } else if (this.keys.includes(KEYS.arrowLeft) && !this.leftBoundaryOn) {
+      // move assets left or right on desktop
+      if (!isMobile) {
+        if (this.keys.includes(KEYS.arrowRight) && !this.rightBoundaryOn) {
+          this.moveAssetsLeft = true;
+          this.moveAssetsRight = false;
+        } else if (this.keys.includes(KEYS.arrowLeft) && !this.leftBoundaryOn) {
+          this.moveAssetsLeft = false;
+          this.moveAssetsRight = true;
+        } else {
+          this.moveAssetsLeft = false;
+          this.moveAssetsRight = false;
+        }
+      }
+
+      // force left and right boundaries
+      if (this.rightBoundaryOn) {
         this.moveAssetsLeft = false;
-        this.moveAssetsRight = true;
-      } else {
-        this.moveAssetsLeft = false;
+      }
+      if (this.leftBoundaryOn) {
         this.moveAssetsRight = false;
       }
 

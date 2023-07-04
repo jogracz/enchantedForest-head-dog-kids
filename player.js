@@ -110,7 +110,7 @@ export default class Player {
       this.moveState = PLAYER_MOVE_STATE.run;
       this.direction = PLAYER_DIRECTION.left;
     } else {
-      this.moveState = PLAYER_MOVE_STATE.idle;
+      // this.moveState = PLAYER_MOVE_STATE.idle;
     }
     // footstep sound
     // if (this.moveState === PLAYER_MOVE_STATE.run) {
