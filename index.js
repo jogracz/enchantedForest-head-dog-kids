@@ -286,39 +286,46 @@ window.addEventListener("load", function () {
       });
 
       // touchmove
-      window.addEventListener("touchmove", (e) => {
-        if (!this.game.player.isDead && isGameStarted && !isGameFinished) {
-          const newX = e.touches[0].clientX;
-          const newY = e.touches[0].clientY;
-          const distanceX = newX - this.touchX;
+      window.addEventListener(
+        "touchmove",
+        (e) => {
+          // prevents scrolling up and down on iphone
+          e.preventDefault();
 
-          // left or right
-          if (distanceX < 0) {
-            if (distanceX < -0.5) {
-              this.game.player.direction = PLAYER_DIRECTION.left;
-              if (!this.game.leftBoundaryOn) {
-                this.game.moveAssetsRight = true;
-                this.game.moveAssetsLeft = false;
+          if (!this.game.player.isDead && isGameStarted && !isGameFinished) {
+            const newX = e.touches[0].clientX;
+            const newY = e.touches[0].clientY;
+            const distanceX = newX - this.touchX;
+
+            // left or right
+            if (distanceX < 0) {
+              if (distanceX < -0.5) {
+                this.game.player.direction = PLAYER_DIRECTION.left;
+                if (!this.game.leftBoundaryOn) {
+                  this.game.moveAssetsRight = true;
+                  this.game.moveAssetsLeft = false;
+                }
+              }
+            } else {
+              if (distanceX > 0.5) {
+                this.game.player.direction = PLAYER_DIRECTION.right;
+                if (!this.game.rightBoundaryOn) {
+                  this.game.moveAssetsRight = false;
+                  this.game.moveAssetsLeft = true;
+                }
               }
             }
-          } else {
-            if (distanceX > 0.5) {
-              this.game.player.direction = PLAYER_DIRECTION.right;
-              if (!this.game.rightBoundaryOn) {
-                this.game.moveAssetsRight = false;
-                this.game.moveAssetsLeft = true;
-              }
+            this.touchX = newX;
+
+            // handle Y move (jump)
+            const distanceY = newY - this.touchStartY;
+            if (distanceY < -this.touchTreshold) {
+              this.game.keys.push(KEYS.arrowUp);
             }
           }
-          this.touchX = newX;
-
-          // handle Y move (jump)
-          const distanceY = newY - this.touchStartY;
-          if (distanceY < -this.touchTreshold) {
-            this.game.keys.push(KEYS.arrowUp);
-          }
-        }
-      });
+        },
+        { passive: false }
+      );
 
       // touchend
       window.addEventListener("touchend", () => {
