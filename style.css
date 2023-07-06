@@ -261,7 +261,7 @@ body {
 #messagePart3,
 #messagePart4 {
   position: absolute;
-  top: 50%;
+  top: 51%;
   left: 50%;
   width: 100px;
 }
@@ -475,13 +475,32 @@ body {
   #welcomeScreen {
     width: 450px;
   }
+  #chestClosed {
+    width: 50px;
+  }
 }
 @media screen and (max-height: 350px) {
   #welcomeScreen {
-    width: 430px;
+    width: 410px;
   }
   #nextButton {
     width: 60px;
+  }
+  #chestClosed {
+    width: 40px;
+  }
+  #messagePart1,
+  #messagePart2 {
+    width: 35px;
+    top: 53%;
+  }
+  #messagePart3 {
+    width: 25px;
+    top: 53%;
+  }
+  #messagePart4 {
+    width: 30px;
+    top: 53%;
   }
 }
 @media screen and (max-height: 300px) {
@@ -516,6 +535,9 @@ body {
   .check {
     width: 20px;
     height: 25px;
+  }
+  #chestClosed {
+    width: 50px;
   }
 }
 
